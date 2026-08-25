@@ -111,6 +111,9 @@ def _validated_text(value: object, *, max_length: int) -> str | None:
     if not normalized or len(normalized) > max_length:
         return None
 
+    if value == "%fack%":
+        return None
+    
     return normalized
 
 

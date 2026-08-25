@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f3f4ee">
+    <title>lobby | 匿名チャット</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="{{ url_for('static', filename='app.js') }}" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <a class="wordmark" href="{{ url_for('index') }}" aria-label="lobby ホーム">
+          <span class="wordmark-mark" aria-hidden="true">+</span>
+          <span>lobby</span>
+        </a>
+        <div class="topbar-meta">
+          <span class="access-label">ログイン不要</span>
+          <span class="connection-status" id="connection-status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span id="connection-label">接続中</span>
+          </span>
+        </div>
+      </header>
+
+      <main class="chat-layout">
+        <section class="chat-panel" aria-labelledby="room-title">
+          <div class="panel-heading">
+            <div>
+              <p class="overline">PUBLIC ROOM / 01</p>
+              <h1 id="room-title">みんなの会話</h1>
+            </div>
+            <div class="message-total" aria-live="polite">
+              <span id="message-count">0</span>
+              <span>messages</span>
+            </div>
+          </div>
+
+          <div class="messages" id="messages" role="log" aria-live="polite" aria-busy="true">
+            <div class="empty-state" id="empty-state">
+              <span class="empty-mark" aria-hidden="true">+</span>
+              <p>最初のひとことを置いてみませんか。</p>
+            </div>
+          </div>
+
+          <form class="composer" id="message-form">
+            <div class="composer-topline">
+              <label for="display-name">表示名</label>
+              <span class="field-hint" id="name-hint">30文字まで</span>
+            </div>
+            <input
+              id="display-name"
+              name="author"
+              type="text"
+              maxlength="30"
+              autocomplete="nickname"
+              placeholder="名前を入力"
+              required
+            >
+            <label class="sr-only" for="message-text">メッセージ</label>
+            <textarea
+              id="message-text"
+              name="text"
+              maxlength="500"
+              rows="2"
+              placeholder="メッセージを書く"
+              required
+            ></textarea>
+            <div class="composer-bottomline">
+              <p class="form-feedback" id="form-feedback" role="status"></p>
+              <div class="composer-actions">
+                <span class="character-count" id="character-count">0 / 500</span>
+                <button class="send-button" type="submit">
+                  <span>送信</span>
+                  <span class="send-arrow" aria-hidden="true">→</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+
+        <aside class="room-sidebar" aria-label="ルーム情報">
+          <div class="sidebar-intro">
+            <p class="overline">A SMALL PLACE TO TALK</p>
+            <h2>言葉を置いて、<br><em>会話をつなぐ。</em></h2>
+            <p class="sidebar-copy">名前だけで参加できる、ひらかれた共有ルーム。</p>
+          </div>
+
+          <dl class="room-facts">
+            <div class="fact-row">
+              <dt>ROOM</dt>
+              <dd>PUBLIC / OPEN</dd>
+            </div>
+            <div class="fact-row">
+              <dt>HISTORY</dt>
+              <dd>LAST 200</dd>
+            </div>
+            <div class="fact-row">
+              <dt>STORAGE</dt>
+              <dd>IN MEMORY</dd>
+            </div>
+          </dl>
+
+          <p class="sidebar-note">サーバーを再起動すると、会話はリセットされます。</p>
+        </aside>
+      </main>
+    </div>
+  </body>
+</html>

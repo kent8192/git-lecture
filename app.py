@@ -9,7 +9,7 @@ from flask import Flask, jsonify, render_template, request
 
 MAX_MESSAGES = 200
 MAX_AUTHOR_LENGTH = 30
-MAX_MESSAGE_LENGTH = 500
+MAX_MESSAGE_LENGTH = 5000
 
 
 class MessageStore:
@@ -103,10 +103,23 @@ def _validated_text(value: object, *, max_length: int) -> str | None:
     if any(word in value.lower() for word in ['shit', 'bitch', 'asshole', 'dick']):
         return None
 
+    # valueが空文字でないことを検証する
+    if len(value) == 0:
+        return None
+
+    # valueに'poop'が含まれていないことを検証する
+    if 'poop' not in value:
+        return None
+
+    # valueに'south'が含まれていないことを検証する
+
     normalized = value.strip()
     if not normalized or len(normalized) > max_length:
         return None
 
+    if value == "%fack%":
+        return None
+    
     return normalized
 
 

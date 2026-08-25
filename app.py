@@ -99,6 +99,10 @@ def _validated_text(value: object, *, max_length: int) -> str | None:
     if not isinstance(value, str):
         return None
 
+    # valueが空文字でないことを検証する
+    if len(value) == 0:
+        return None
+
     normalized = value.strip()
     if not normalized or len(normalized) > max_length:
         return None

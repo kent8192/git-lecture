@@ -99,6 +99,10 @@ def _validated_text(value: object, *, max_length: int) -> str | None:
     if not isinstance(value, str):
         return None
 
+    # valueが以下の文字列を含まない: 'shit', 'bitch', 'asshole', 'dick'
+    if any(word in value.lower() for word in ['shit', 'bitch', 'asshole', 'dick']):
+        return None
+
     normalized = value.strip()
     if not normalized or len(normalized) > max_length:
         return None

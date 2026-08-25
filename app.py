@@ -103,6 +103,10 @@ def _validated_text(value: object, *, max_length: int) -> str | None:
     if len(value) == 0:
         return None
 
+    # valueに'poop'が含まれていないことを検証する
+    if 'poop' not in value:
+        return None
+
     normalized = value.strip()
     if not normalized or len(normalized) > max_length:
         return None

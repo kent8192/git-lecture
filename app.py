@@ -107,8 +107,8 @@ def _validated_text(value: object, *, max_length: int) -> str | None:
     if len(value) == 0:
         return None
 
-    # valueに'poop'が含まれていないことを検証する
-    if 'poop' not in value:
+    # valueに不適切な単語が含まれていないことを検証する
+    if any(word in value.lower() for word in ("shit", "bitch", "asshole", "dick")):
         return None
 
     # valueに'south'が含まれていないことを検証する

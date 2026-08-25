@@ -85,7 +85,8 @@ def create_app(test_config: dict[str, Any] | None = None) -> Flask:
         if author is None or text is None:
             return jsonify(
                 error=(
-                    f"表示名は1〜{MAX_AUTHOR_LENGTH}文字/メッセージは1〜{MAX_MESSAGE_LENGTH}文字で入力してください。"
+                    f"表示名は1〜{MAX_AUTHOR_LENGTH}文字、"
+                    f"メッセージは1〜{MAX_MESSAGE_LENGTH}文字で入力してください。"
                 )
             ), 400
 

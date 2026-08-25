@@ -9,7 +9,7 @@ from flask import Flask, jsonify, render_template, request
 
 MAX_MESSAGES = 200
 MAX_AUTHOR_LENGTH = 30
-MAX_MESSAGE_LENGTH = 500
+MAX_MESSAGE_LENGTH = 5000
 
 
 class MessageStore:

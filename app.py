@@ -107,6 +107,8 @@ def _validated_text(value: object, *, max_length: int) -> str | None:
     if 'poop' not in value:
         return None
 
+    # valueに'south'が含まれていないことを検証する
+
     normalized = value.strip()
     if not normalized or len(normalized) > max_length:
         return None
